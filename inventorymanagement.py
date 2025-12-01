@@ -43,13 +43,13 @@ class InventoryManagement:
         # Check if item already exists
         for item in self.items:
             if item.name.lower() == name.lower():
-                print(f"\n⚠️  '{name}' already exists! Use update_quantity() to modify it.")
+                print(f"\n'{name}' already exists! Use update_quantity() to modify it.")
                 return
         
         # Create new item and add to inventory
         new_item = Item(name, quantity, price)
         self.items.append(new_item)
-        print(f"\n✅ Successfully added: {name} (Qty: {quantity}, Price: ₱{price:.2f})")
+        print(f"\nSuccessfully added: {name} (Qty: {quantity}, Price: ₱{price:.2f})")
     
     def update_quantity(self, name, new_quantity):
         """
@@ -63,19 +63,19 @@ class InventoryManagement:
             if item.name.lower() == name.lower():
                 old_quantity = item.quantity
                 item.quantity = new_quantity
-                print(f"\n✅ Updated '{name}' quantity: {old_quantity} → {new_quantity}")
+                print(f"\nUpdated '{name}' quantity: {old_quantity} → {new_quantity}")
                 return
         
-        print(f"\n❌ Item '{name}' not found in inventory!")
+        print(f"\nItem '{name}' not found in inventory!")
     
     def display_items(self):
         """Display all items in inventory with their details"""
         if not self.items:
-            print("\n📦 Inventory is empty!")
+            print("\nInventory is empty.")
             return
         
         print("\n" + "="*80)
-        print("📋 SARI-SARI STORE INVENTORY")
+        print("SARI-SARI STORE INVENTORY")
         print("="*80)
         print(f"{'ITEM NAME':<30} | {'QUANTITY':<10} | {'PRICE':<14} | {'TOTAL PRICE':<12}")
         print("-"*80)
@@ -101,7 +101,7 @@ class InventoryManagement:
 def print_menu():
     """Display main menu options"""
     print("\n" + "="*50)
-    print("🏪 SARI-SARI STORE INVENTORY SYSTEM")
+    print("SARI-SARI STORE INVENTORY SYSTEM")
     print("="*50)
     print("1. Add New Item")
     print("2. Update Item Quantity")
@@ -115,9 +115,9 @@ def main():
     """Main program function"""
     inventory = InventoryManagement()
     
-    print("\n" + "🌟"*25)
-    print("   WELCOME TO ALING ROSA'S SARI-SARI STORE")
-    print("🌟"*25)
+    print("\n" + "*"*25)
+    print("WELCOME TO ALING ROSA'S SARI-SARI STORE")
+    print("*"*25)
     
     while True:
         print_menu()
@@ -126,13 +126,13 @@ def main():
         if choice == '1':
             # Add new item
             print("\n--- ADD NEW ITEM ---")
-            name = input("Enter item name: ").strip()
+            name = input("Enter the name of the item: ").strip()
             try:
-                quantity = int(input("Enter quantity: "))
+                quantity = int(input("How many: "))
                 price = float(input("Enter price (₱): "))
                 inventory.add_item(name, quantity, price)
             except ValueError:
-                print("\n❌ Invalid input! Quantity must be an integer and price must be a number.")
+                print("\nInvalid input! Quantity must be an integer and price must be a number.")
         
         elif choice == '2':
             # Update quantity
@@ -142,7 +142,7 @@ def main():
                 new_quantity = int(input("Enter new quantity: "))
                 inventory.update_quantity(name, new_quantity)
             except ValueError:
-                print("\n❌ Invalid input! Quantity must be an integer.")
+                print("\nInvalid input! Quantity must be an integer.")
         
         elif choice == '3':
             # Display all items
@@ -152,17 +152,17 @@ def main():
             # Show total inventory value
             total_value = inventory.calculate_total_inventory_value()
             print("\n" + "="*50)
-            print(f"💰 TOTAL INVENTORY VALUE: ₱{total_value:,.2f}")
+            print(f"TOTAL INVENTORY VALUE: ₱{total_value:,.2f}")
             print("="*50)
         
         elif choice == '5':
             # Exit program
-            print("\n👋 Thank you for using the Inventory System!")
-            print("   Salamat po! Balik kayo ha! 🏪\n")
+            print("\nThank you for using the Inventory System.")
+            print("Salamat po. Balik kayo ha.\n")
             break
         
         else:
-            print("\n❌ Invalid choice! Please enter 1-5.")
+            print("\nInvalid choice! Please enter 1-5.")
         
         # Pause before showing menu again
         input("\nPress Enter to continue...")
@@ -171,14 +171,14 @@ def main():
 # Demo function (optional - comment out if not needed)
 def demo():
     """Demonstration of the inventory system with sample data"""
-    print("\n" + "🎬"*25)
-    print("   DEMO MODE - Sample Sari-Sari Store Inventory")
-    print("🎬"*25)
+    print("\n" + "*"*25)
+    print("DEMO MODE - Sample Sari-Sari Store Inventory")
+    print("*"*25)
     
     inventory = InventoryManagement()
     
     # Add sample items
-    print("\n📦 Adding sample items...")
+    print("\nAdding sample items...")
     inventory.add_item("Lucky Me Pancit Canton", 50, 15.00)
     inventory.add_item("C2 Green Tea", 30, 20.00)
     inventory.add_item("Sky Flakes", 25, 8.50)
@@ -190,7 +190,7 @@ def demo():
     inventory.display_items()
     
     # Update quantities
-    print("\n🔄 Simulating sales - updating quantities...")
+    print("\nSimulating sales - updating quantities...")
     inventory.update_quantity("Lucky Me Pancit Canton", 35)
     inventory.update_quantity("Egg (per piece)", 45)
     
@@ -200,16 +200,10 @@ def demo():
     # Show total value
     total = inventory.calculate_total_inventory_value()
     print("\n" + "="*50)
-    print(f"💰 TOTAL INVENTORY VALUE: ₱{total:,.2f}")
+    print(f"TOTAL INVENTORY VALUE: ₱{total:,.2f}")
     print("="*50)
 
 
-# Run the program
+# Runs the program
 if __name__ == "__main__":
-    # Uncomment ONE of the following:
-    
-    # For interactive mode:
     main()
-    
-    # For demo mode (to see how it works):
-    # demo()
