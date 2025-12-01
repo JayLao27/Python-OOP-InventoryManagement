@@ -9,7 +9,7 @@ class Item:
     
     def __str__(self):
         return (f"{self.name:<30} | Qty: {self.quantity:<5} | "
-                f"Price: ₱{self.price:>7.2f} | Total: ₱{self.get_total_price():>8.2f}")
+                f"Price: ₱{self.price:>7.2f} | Total: ₱{self.get_total_price():>8.2f}") #total price formatting
 
 
 class InventoryManagement:
@@ -19,18 +19,18 @@ class InventoryManagement:
     def add_item(self, name, quantity, price):
         for item in self.items:
             if item.name.lower() == name.lower():
-                print(f"\n'{name}' already exists! Use update_quantity() instead.")
+                print(f"\n'{name}' already exists! Use update_quantity() instead.") # if already exists
                 return
         
         self.items.append(Item(name, quantity, price))
-        print(f"\nAdded: {name} (Qty: {quantity}, Price: ₱{price:.2f})")
+        print(f"\nAdded: {name} (Qty: {quantity}, Price: ₱{price:.2f})") #added item confirmation
     
     def update_quantity(self, name, new_quantity):
         for item in self.items:
             if item.name.lower() == name.lower():
                 old_q = item.quantity
                 item.quantity = new_quantity
-                print(f"\nUpdated '{name}' quantity: {old_q} → {new_quantity}")
+                print(f"\nUpdated '{name}' quantity: {old_q} → {new_quantity}") #update quantity confirmation
                 return
         
         print(f"\nItem '{name}' not found.")
@@ -43,7 +43,7 @@ class InventoryManagement:
         print("\n" + "="*80)
         print("SARI-SARI STORE INVENTORY")
         print("="*80)
-        print(f"{'ITEM NAME':<30} | {'QUANTITY':<10} | {'PRICE':<14} | {'TOTAL PRICE':<12}")
+        print(f"{'ITEM NAME':<30} | {'QUANTITY':<10} | {'PRICE':<14} | {'TOTAL PRICE':<12}")  #the header when you are displaying items
         print("-"*80)
         
         for item in self.items:
@@ -55,7 +55,7 @@ class InventoryManagement:
         return sum(item.get_total_price() for item in self.items)
 
 
-def print_menu():
+def print_menu(): # Function to print the main menu 
     print("\n" + "="*50)
     print("SARI-SARI STORE INVENTORY SYSTEM")
     print("="*50)
@@ -71,7 +71,7 @@ def main():
     inventory = InventoryManagement()
     
     print("\n" + "*"*25)
-    print("WELCOME TO ALING ROSA'S SARI-SARI STORE")
+    print("WELCOME TO LAO'S SARI-SARI STORE")
     print("*"*25)
     
     while True:
